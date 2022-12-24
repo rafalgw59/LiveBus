@@ -1,24 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aG3-F0-wAi">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Mapa-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapVC" customModule="bussin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeA-Qp-7EP" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="59" width="393" height="662"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpU-vD-l1D">
+                                <rect key="frame" x="176" y="729" width="41.333333333333343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="rCE-l9-5YG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yeA-Qp-7EP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0I3-BW-XsY"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6LL-wx-164"/>
+                            <constraint firstItem="yeA-Qp-7EP" firstAttribute="centerX" secondItem="DpU-vD-l1D" secondAttribute="centerX" id="C1a-eA-LWq"/>
+                            <constraint firstItem="yeA-Qp-7EP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lMX-SK-l1M"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="top" secondItem="yeA-Qp-7EP" secondAttribute="bottom" constant="8" id="nCd-XB-OQZ"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qLx-pp-Vqu"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Mapa" image="map" catalog="system" id="ayX-u6-6Z3"/>
+                    <connections>
+                        <outlet property="linesLabel" destination="DpU-vD-l1D" id="38q-H9-wzT"/>
+                        <outlet property="mapView" destination="yeA-Qp-7EP" id="46p-Nc-HsV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.824427480916029" y="812.67605633802816"/>
+        </scene>
+        <!--Linie-->
+        <scene sceneID="RuU-gL-f6J">
+            <objects>
+                <viewController id="lX3-gk-qbG" customClass="LinesVC" customModule="bussin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5sX-l7-PUN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="4zO-UW-9RB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Linie" image="location.north.line" catalog="system" id="heP-cV-rB9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Mf-w5-CWM" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1151.9083969465648" y="812.67605633802816"/>
+        </scene>
+        <!--Miasta-->
+        <scene sceneID="ptU-e5-Lps">
+            <objects>
+                <viewController id="Q43-be-Ixv" customClass="CityVC" customModule="bussin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oxa-2b-UzP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ADL-Ie-Ofg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Miasta" image="globe" catalog="system" id="AfW-7s-TpA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="taP-yf-8B8" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1056" y="793"/>
+        </scene>
+        <!--Base Tab Bar Controller-->
+        <scene sceneID="YFL-MU-QLJ">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="aG3-F0-wAi" customClass="BaseTabBarController" customModule="bussin" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nsg-Di-cqv">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="defaultIndex">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="Q43-be-Ixv" kind="relationship" relationship="viewControllers" id="gHz-4j-9Gg"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="QNh-J9-4Hp"/>
+                        <segue destination="lX3-gk-qbG" kind="relationship" relationship="viewControllers" id="OMy-qc-abR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Mj-sS-pMT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.824427480916029" y="-27.464788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="globe" catalog="system" width="128" height="123"/>
+        <image name="location.north.line" catalog="system" width="84" height="128"/>
+        <image name="map" catalog="system" width="128" height="112"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
