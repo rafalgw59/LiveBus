@@ -10,7 +10,6 @@
 		1BFE4484728A0EFD06C529EF /* Pods_bussin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460B64CE23216E19C2556D19 /* Pods_bussin.framework */; };
 		2B7EEAE52950F1D600DE7776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7EEAE42950F1D600DE7776 /* AppDelegate.swift */; };
 		2B7EEAE72950F1D600DE7776 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7EEAE62950F1D600DE7776 /* SceneDelegate.swift */; };
-		2B7EEAE92950F1D600DE7776 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7EEAE82950F1D600DE7776 /* ViewController.swift */; };
 		2B7EEAEC2950F1D600DE7776 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7EEAEA2950F1D600DE7776 /* Main.storyboard */; };
 		2B7EEAEE2950F1DA00DE7776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7EEAED2950F1DA00DE7776 /* Assets.xcassets */; };
 		2B7EEAF12950F1DA00DE7776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7EEAEF2950F1DA00DE7776 /* LaunchScreen.storyboard */; };
@@ -26,11 +25,22 @@
 		2BDBD53F2955CAF500A4A5D8 /* mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BDBD53E2955CAF500A4A5D8 /* mark.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2BD54EDD295DDF2400B68517 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2B7EEAE12950F1D600DE7776 /* bussin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bussin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7EEAE42950F1D600DE7776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B7EEAE62950F1D600DE7776 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2B7EEAE82950F1D600DE7776 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2B7EEAEB2950F1D600DE7776 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2B7EEAED2950F1DA00DE7776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B7EEAF02950F1DA00DE7776 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,6 +52,7 @@
 		2B7EEB002951150200DE7776 /* SzczecinRouteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SzczecinRouteManager.swift; sourceTree = "<group>"; };
 		2B90321C2954B1340034AC0D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		2B90321E2954BD1C0034AC0D /* dark_mode_style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dark_mode_style.json; sourceTree = "<group>"; };
+		2BD54EDF295DDF2400B68517 /* libbussinLab.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbussinLab.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BDBD53A2954DD8000A4A5D8 /* stops.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stops.json; sourceTree = "<group>"; };
 		2BDBD53C2954E92600A4A5D8 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
 		2BDBD53E2955CAF500A4A5D8 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
@@ -56,6 +67,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BFE4484728A0EFD06C529EF /* Pods_bussin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BD54EDC295DDF2400B68517 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				2B7EEAE12950F1D600DE7776 /* bussin.app */,
+				2BD54EDF295DDF2400B68517 /* libbussinLab.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,23 +104,62 @@
 			children = (
 				2B7EEAE42950F1D600DE7776 /* AppDelegate.swift */,
 				2B7EEAE62950F1D600DE7776 /* SceneDelegate.swift */,
-				2B7EEAF82950F43900DE7776 /* MapVC.swift */,
-				2BDBD53C2954E92600A4A5D8 /* MapInfoWindow.swift */,
-				2BDBD53A2954DD8000A4A5D8 /* stops.json */,
-				2B90321E2954BD1C0034AC0D /* dark_mode_style.json */,
-				2B7EEAFA2950F48300DE7776 /* CityVC.swift */,
-				2B7EEAFC2950F4B300DE7776 /* LinesVC.swift */,
-				2B7EEB002951150200DE7776 /* SzczecinRouteManager.swift */,
-				2B90321C2954B1340034AC0D /* BaseTabBarController.swift */,
-				2B7EEAFE295111F600DE7776 /* CustomCollectionViewCell.swift */,
-				2B7EEAE82950F1D600DE7776 /* ViewController.swift */,
-				2B7EEAEA2950F1D600DE7776 /* Main.storyboard */,
+				2BFC157029647A9400F99CEF /* ViewControllers */,
+				2BFC157129647B0800F99CEF /* Managers */,
+				2BFC157229647B1F00F99CEF /* CustomViews */,
+				2BFC157329647B7300F99CEF /* Resources */,
+				2BFC157429647B9A00F99CEF /* StoryBoards */,
 				2B7EEAED2950F1DA00DE7776 /* Assets.xcassets */,
-				2BDBD53E2955CAF500A4A5D8 /* mark.png */,
-				2B7EEAEF2950F1DA00DE7776 /* LaunchScreen.storyboard */,
 				2B7EEAF22950F1DA00DE7776 /* Info.plist */,
 			);
 			path = bussin;
+			sourceTree = "<group>";
+		};
+		2BFC157029647A9400F99CEF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2B7EEAFA2950F48300DE7776 /* CityVC.swift */,
+				2B7EEAF82950F43900DE7776 /* MapVC.swift */,
+				2B7EEAFC2950F4B300DE7776 /* LinesVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2BFC157129647B0800F99CEF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2B7EEB002951150200DE7776 /* SzczecinRouteManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		2BFC157229647B1F00F99CEF /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				2B90321C2954B1340034AC0D /* BaseTabBarController.swift */,
+				2BDBD53C2954E92600A4A5D8 /* MapInfoWindow.swift */,
+				2B7EEAFE295111F600DE7776 /* CustomCollectionViewCell.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		2BFC157329647B7300F99CEF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2BDBD53A2954DD8000A4A5D8 /* stops.json */,
+				2B90321E2954BD1C0034AC0D /* dark_mode_style.json */,
+				2BDBD53E2955CAF500A4A5D8 /* mark.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2BFC157429647B9A00F99CEF /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				2B7EEAEA2950F1D600DE7776 /* Main.storyboard */,
+				2B7EEAEF2950F1DA00DE7776 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 		4817821800411B2C21F1A671 /* Pods */ = {
@@ -144,6 +202,23 @@
 			productReference = 2B7EEAE12950F1D600DE7776 /* bussin.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2BD54EDE295DDF2400B68517 /* bussinLab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BD54EE5295DDF2400B68517 /* Build configuration list for PBXNativeTarget "bussinLab" */;
+			buildPhases = (
+				2BD54EDB295DDF2400B68517 /* Sources */,
+				2BD54EDC295DDF2400B68517 /* Frameworks */,
+				2BD54EDD295DDF2400B68517 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bussinLab;
+			productName = bussinLab;
+			productReference = 2BD54EDF295DDF2400B68517 /* libbussinLab.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -155,6 +230,9 @@
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					2B7EEAE02950F1D600DE7776 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					2BD54EDE295DDF2400B68517 = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -173,6 +251,7 @@
 			projectRoot = "";
 			targets = (
 				2B7EEAE02950F1D600DE7776 /* bussin */,
+				2BD54EDE295DDF2400B68517 /* bussinLab */,
 			);
 		};
 /* End PBXProject section */
@@ -261,12 +340,18 @@
 				2B7EEAFD2950F4B300DE7776 /* LinesVC.swift in Sources */,
 				2B90321D2954B1340034AC0D /* BaseTabBarController.swift in Sources */,
 				2B7EEAFF295111F700DE7776 /* CustomCollectionViewCell.swift in Sources */,
-				2B7EEAE92950F1D600DE7776 /* ViewController.swift in Sources */,
 				2B7EEAF92950F43900DE7776 /* MapVC.swift in Sources */,
 				2BDBD53D2954E92600A4A5D8 /* MapInfoWindow.swift in Sources */,
 				2B7EEAE52950F1D600DE7776 /* AppDelegate.swift in Sources */,
 				2B7EEAE72950F1D600DE7776 /* SceneDelegate.swift in Sources */,
 				2B7EEAFB2950F48300DE7776 /* CityVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BD54EDB295DDF2400B68517 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,8 +502,8 @@
 				DEVELOPMENT_TEAM = 8CTL55U895;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bussin/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Hello;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Hello;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -448,8 +533,8 @@
 				DEVELOPMENT_TEAM = 8CTL55U895;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bussin/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Hello;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Hello;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -463,6 +548,32 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rafalgawlik.bussin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2BD54EE3295DDF2400B68517 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8CTL55U895;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2BD54EE4295DDF2400B68517 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8CTL55U895;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -485,6 +596,15 @@
 			buildConfigurations = (
 				2B7EEAF62950F1DA00DE7776 /* Debug */,
 				2B7EEAF72950F1DA00DE7776 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BD54EE5295DDF2400B68517 /* Build configuration list for PBXNativeTarget "bussinLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BD54EE3295DDF2400B68517 /* Debug */,
+				2BD54EE4295DDF2400B68517 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

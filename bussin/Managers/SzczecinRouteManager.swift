@@ -24,7 +24,7 @@ struct RoutesManager{
         performRequest(with: urlString)
     }
     
-    func parseJSONa(_ routesData: Data)->[String]?{
+    func parseJSON(_ routesData: Data)->[String]?{
         
         let decoder = JSONDecoder()
         
@@ -44,7 +44,7 @@ struct RoutesManager{
     }
     
     func performRequest(with urlString: String){
-        guard let url = URL(string: urlString) else {fatalError("nope")}
+        guard let url = URL(string: urlString) else {fatalError("error")}
         
         let session = URLSession(configuration: .default)
         
@@ -54,7 +54,7 @@ struct RoutesManager{
                 print("error in session task \(String(describing: error?.localizedDescription))")
             } else{
                 if let safeData = data{
-                    guard let routes = self.parseJSONa(safeData) else {fatalError("Error in parsing from JSON")}
+                    guard let routes = self.parseJSON(safeData) else {fatalError("Error in parsing from JSON")}
                     DispatchQueue.main.async {
                         delegate?.didSendRoutesData(self, with: routes)
                     }

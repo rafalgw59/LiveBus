@@ -17,14 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeA-Qp-7EP" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="59" width="393" height="662"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpU-vD-l1D">
-                                <rect key="frame" x="176" y="729" width="41.333333333333343" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="rCE-l9-5YG"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="738" width="393" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -33,12 +30,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yeA-Qp-7EP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0I3-BW-XsY"/>
-                            <constraint firstItem="DpU-vD-l1D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6LL-wx-164"/>
-                            <constraint firstItem="yeA-Qp-7EP" firstAttribute="centerX" secondItem="DpU-vD-l1D" secondAttribute="centerX" id="C1a-eA-LWq"/>
-                            <constraint firstItem="yeA-Qp-7EP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lMX-SK-l1M"/>
-                            <constraint firstItem="DpU-vD-l1D" firstAttribute="top" secondItem="yeA-Qp-7EP" secondAttribute="bottom" constant="8" id="nCd-XB-OQZ"/>
-                            <constraint firstItem="DpU-vD-l1D" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qLx-pp-Vqu"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="leading" secondItem="yeA-Qp-7EP" secondAttribute="leading" id="3pD-n4-F1m"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8Cs-rv-igw"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="DfN-es-N3F"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yeA-Qp-7EP" secondAttribute="bottom" constant="39" id="IOK-aA-sb8"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="centerX" secondItem="yeA-Qp-7EP" secondAttribute="centerX" id="Y4O-Rf-BJk"/>
+                            <constraint firstItem="yeA-Qp-7EP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aVB-bS-V0a"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cf1-EK-AET"/>
+                            <constraint firstItem="DpU-vD-l1D" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="679" id="dOf-fK-p6T"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Mapa" image="map" catalog="system" id="ayX-u6-6Z3"/>
@@ -91,7 +90,8 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nsg-Di-cqv">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="defaultIndex">
@@ -113,8 +113,14 @@
         <image name="globe" catalog="system" width="128" height="123"/>
         <image name="location.north.line" catalog="system" width="84" height="128"/>
         <image name="map" catalog="system" width="128" height="112"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemFillColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

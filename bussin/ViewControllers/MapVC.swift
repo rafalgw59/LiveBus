@@ -51,7 +51,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     let mapInfoWindow = MapInfoWindow(frame: CGRect(x: 10, y: 75, width: 370, height: 90))
 
     private let locationManager = CLLocationManager()
-    
     private let updateInterval: TimeInterval = 5
     private var timer: Timer?
     private var buses = [String: BusModel]()
@@ -61,7 +60,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     private var markersDict = [String: GMSMarker]()
     private var updMarkersDict = [String: GMSMarker]()
     private var selectedRoutes = [String]()
-    
+    private var selectedMarkers = [GMSMarker]()
     private var stops = [String: StopsData]()
     // MARK: - Outlets
     
@@ -114,17 +113,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
 
             }
             startTimer()
-
-            //self.startTimer()
-            //scheduleBackgroundTask()
         }
-//        getStopsCompletion = { stopElements in
-//            // Use the stopElements from getStops here
-//            print(stopElements)
-//            self.fetchBuses {
-//                self.startTimer()
-//            }
-//        }
+
     
     }
     override  func viewWillDisappear(_ animated: Bool) {
@@ -133,35 +123,20 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     func setupView(){
         mapView.delegate = self
-
-
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
         let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 53.441881238054975, longitude: 14.484995963343623, zoom: 13.0)
         mapView.settings.myLocationButton = true
         mapView.isMyLocationEnabled = true
-        //mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 25)
         mapView.camera = camera
-//        if traitCollection.userInterfaceStyle == .dark{
-//            do{
-//                googleMap.mapStyle = try GMSMapStyle(jsonString: MapStyle)
-//
-//                } catch {
-//                    NSLog("failed to load dark mode map :C")
-//                }
-//
-//            }
-
     }
     // MARK: - Private Methods
     
     private func fetchBuses(completion: @escaping ()->()) {
-        //print(selectedRoutes.count)
         if selectedRoutes.count == 0{
             return
         }
-        
             let urlString = "https://www.zditm.szczecin.pl/json/pojazdy.inc.php"
             guard let url = URL(string: urlString) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -169,165 +144,197 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
                         print("Error fetching buses:", error)
                         return
                     }
-                    
+
                     guard let data = data else { return }
-                    
+
                     do {
                         var buses = try JSONDecoder().decode([BusModel].self, from: data)
                         buses = buses.filter { self.selectedRoutes.contains($0.linia) }
                         for bus in buses {
                             self.buses[bus.id] = bus
-                            
+
                             let marker = GMSMarker()
                             let markerPin = self.createMarker(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: 0.0,stopLon: 0.0,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!)
                             marker.icon = markerPin
                             marker.title = bus.id
-                            //marker.rotation = 90
                             marker.position = CLLocationCoordinate2D(latitude: Double(bus.lat) ?? 0.0, longitude: Double(bus.lon) ?? 0.0)
                             let usrData: [String:String] = ["id": bus.id,"linia": bus.linia, "brygada": bus.brygada,"z":bus.z,"do":bus.do!,"trasa":bus.trasa,"opoznienie":bus.punktualnosc2,"opoznienieInfo":bus.punktualnosc1,"kierunek":bus.kierunek]
                             marker.userData = usrData
                             marker.map = self.mapView
                             self.markers.append(marker)
                             self.markersDict[bus.id] = marker
-                            
-//                            //WIP
-//
-//                            if let markerValue = bus.do {
-//                                if let key = self.stops.keys.first(where: { (key) -> Bool in
-//                                    return key == markerValue
-//                                }) {
-//                                    if let value = self.stops[key] {
-//                                        print(value.dlugoscgeo)
-//                                        print(value.szerokoscgeo)// prints "value1"
-//
-//                                        let marker = GMSMarker()
-//                                        let markerPin = self.createMarker(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!)
-//                                        if let markerPin = self.createMarkers(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!){
-//                                            marker.icon = markerPin
-//
-//                                        }
-//
-//                                        marker.icon = markerPin
-//                                        marker.title = bus.id
-//                                        //marker.rotation = 90
-//                                        marker.position = CLLocationCoordinate2D(latitude: Double(bus.lat) ?? 0.0, longitude: Double(bus.lon) ?? 0.0)
-//                                        let usrData: [String:String] = ["id": bus.id,"linia": bus.linia, "brygada": bus.brygada,"z":bus.z,"do":bus.do!,"trasa":bus.trasa,"opoznienie":bus.punktualnosc2,"opoznienieInfo":bus.punktualnosc1,"kierunek":bus.kierunek]
-//                                        marker.userData = usrData
-//                                        marker.map = self.mapView
-//                                        self.markers.append(marker)
-//                                        self.markersDict[bus.id] = marker
-//
-//                                    }
-//                                }
-//                            }
-                            
-
-
-                            
-//                            DispatchQueue.main.async {
-//                                let imageView = UIImageView(image: markerPin)
-//                                imageView.transform = CGAffineTransform(rotationAngle: 90)
-//                                let rotatedImage = imageView.image
-//
-//                                let marker = GMSMarker()
-//                                marker.title = bus.id
-//                                marker.icon = rotatedImage
-//                                //marker.rotation = 90
-//                                marker.position = CLLocationCoordinate2D(latitude: Double(bus.lat) ?? 0.0, longitude: Double(bus.lon) ?? 0.0)
-//                                let usrData: [String:String] = ["id": bus.id,"linia": bus.linia, "brygada": bus.brygada,"z":bus.z,"do":bus.do,"trasa":bus.trasa,"opoznienie":bus.punktualnosc2,"opoznienieInfo":bus.punktualnosc1,"kierunek":bus.kierunek]
-//                                marker.userData = usrData
-//                                marker.map = self.mapView
-//                                self.markers.append(marker)
-//                                self.markersDict[bus.id] = marker
-//                            }
-
-                            
-//                            let marker = GMSMarker()
-//                            marker.title = bus.id
-//                            marker.icon =
-//                            //marker.rotation = 90
-//                            marker.position = CLLocationCoordinate2D(latitude: Double(bus.lat) ?? 0.0, longitude: Double(bus.lon) ?? 0.0)
-//                            let usrData: [String:String] = ["id": bus.id,"linia": bus.linia, "brygada": bus.brygada,"z":bus.z,"do":bus.do!,"trasa":bus.trasa,"opoznienie":bus.punktualnosc2,"opoznienieInfo":bus.punktualnosc1,"kierunek":bus.kierunek]
-//                            marker.userData = usrData
-//                            marker.map = self.mapView
-//                            self.markers.append(marker)
-//                            self.markersDict[bus.id] = marker
                         }
                         completion()
-                        //self.createMarkers()
-                        //print(buses)
-                        print("buses count", buses.count)
-
                     } catch let jsonError {
                         print("Error parsing JSON:", jsonError)
                     }
                 }.resume()
             }
-        
+    
+//    @objc private func updateBuses() {
+//        if selectedRoutes.count == 0 {
+//            return
+//        }
+//
+//        let urlString = "https://www.zditm.szczecin.pl/json/pojazdy.inc.php"
+//        guard let url = URL(string: urlString) else { return }
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            if let error = error {
+//                print("Error fetching buses:", error)
+//                return
+//            }
+//
+//            guard let data = data else { return }
+//
+//            do {
+//                var updBuses = try JSONDecoder().decode([BusModel].self, from: data)
+//                updBuses = updBuses.filter { self.selectedRoutes.contains($0.linia) }
+//
+//                for bus in updBuses {
+//                    self.updBuses[bus.id] = bus
+//                }
+//
+//                // Find new and missing keys
+//                //let newKeys = Set(updBuses.keys).subtracting(self.buses.keys)
+//                let updBusesKeys = updBuses.map { $0.id }
+//                let newKeys = Set(updBusesKeys).subtracting(Set(self.buses.keys))
+//                let missingKeys = Set(self.buses.keys).subtracting(Set(updBusesKeys))
+//
+//                // Update positions of existing markers
+//                for (id, bus) in self.buses {
+//                    if let updBus = self.updBuses[id] {
+//                        // Check if coordinates have changed
+//                        if updBus.lat != bus.lat || updBus.lon != bus.lon {
+//                            if let marker = self.markersDict[id]{
+////                                let markerPin = self.createMarker(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: 0.0,stopLon: 0.0,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!)
+////                                marker.icon = markerPin
+//                                CATransaction.begin()
+//                                CATransaction.setAnimationDuration(2.0)
+//                                marker.position = CLLocationCoordinate2D(latitude: Double(updBus.lat) ?? 0.0, longitude: Double(updBus.lon) ?? 0.0)
+//
+//                                CATransaction.commit()
+//                            }
+////
+////                            if let markerValue = updBus.do {
+////                                if let key = self.stops.keys.first(where: { (key) -> Bool in
+////                                    return key == markerValue
+////                                }) {
+////                                    if let value = self.stops[key] {
+////
+////                                        // Update marker position
+////                                        if let marker = self.markersDict[id] {
+////                                            //WIP
+//////                                            if let markerPin = self.createMarkers(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!){
+//////                                                marker.icon = markerPin
+//////
+//////                                            }
+////
+////                                        }
+////                                    }
+////                                }
+////                            }
+//
+//                        }
+//                    }
+//                }
+//
+//                // Add new markers for new objects
+//                for id in newKeys {
+//                    if let bus = self.updBuses[id] {
+//                        let marker = GMSMarker()
+//                        let markerPin = self.createMarker(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: 0.0,stopLon: 0.0,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!)
+//
+//                        marker.title = bus.id
+//                        marker.icon = markerPin
+//                        //marker.rotation = 90
+//                        marker.position = CLLocationCoordinate2D(latitude: Double(bus.lat) ?? 0.0, longitude: Double(bus.lon) ?? 0.0)
+//                        let usrData: [String:String] = ["id": bus.id,"linia": bus.linia, "brygada": bus.brygada,"z":bus.z,"do":bus.do!,"trasa":bus.trasa,"opoznienie":bus.punktualnosc2,"opoznienieInfo":bus.punktualnosc1,"kierunek":bus.kierunek]
+//                        marker.userData = usrData
+//                        marker.map = self.mapView
+//                        self.markers.append(marker)
+//                        self.markersDict[bus.id] = marker
+////                        if let markerValue = bus.do {
+////                            if let key = self.stops.keys.first(where: { (key) -> Bool in
+////                                return key == markerValue
+////                            }) {
+////                                if let value = self.stops[key] {
+////                                    //print(value.dlugoscgeo)
+////                                    //print(value.szerokoscgeo)// prints "value1"
+////                                    let marker = GMSMarker()
+////                                    //WIP
+//////                                    if let markerPin = self.createMarkers(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!){
+//////                                        marker.icon = markerPin
+//////
+//////                                    }
+////                                    let markerPin = self.createMarker(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!)
+////
+////                                    marker.title = bus.id
+////                                    marker.icon = markerPin
+////                                    //marker.rotation = 90
+////                                    marker.position = CLLocationCoordinate2D(latitude: Double(bus.lat) ?? 0.0, longitude: Double(bus.lon) ?? 0.0)
+////                                    let usrData: [String:String] = ["id": bus.id,"linia": bus.linia, "brygada": bus.brygada,"z":bus.z,"do":bus.do!,"trasa":bus.trasa,"opoznienie":bus.punktualnosc2,"opoznienieInfo":bus.punktualnosc1,"kierunek":bus.kierunek]
+////                                    marker.userData = usrData
+////                                    marker.map = self.mapView
+////                                    self.markers.append(marker)
+////                                    self.markersDict[bus.id] = marker
+////
+////                                }
+////                            }
+////                        }
+//
+//
+//                    }
+//                }
+//
+//                // Remove markers for missing objects
+//                for id in missingKeys {
+//                    if let marker = self.markersDict[id] {
+//                        marker.map = nil
+//                        self.markers.removeAll(where: { $0.title == id })
+//                        self.markersDict.removeValue(forKey: id)
+//                    }
+//                }
+//
+//                // Update local copy of data
+//                self.buses = self.updBuses
+//                self.updBuses.removeAll()
+//            }
+//            catch let jsonError {
+//                print("Error parsing JSON:", jsonError)
+//            }
+//        }.resume()
+//    }
     
     @objc private func updateBuses() {
-        if selectedRoutes.count == 0 {
-            return
-        }
-        
-        let urlString = "https://www.zditm.szczecin.pl/json/pojazdy.inc.php"
+        if selectedRoutes.count == 0 { return }
+        let urlString = ""
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("Error fetching buses:", error)
                 return
             }
-            
             guard let data = data else { return }
-            
             do {
                 var updBuses = try JSONDecoder().decode([BusModel].self, from: data)
                 updBuses = updBuses.filter { self.selectedRoutes.contains($0.linia) }
-                
                 for bus in updBuses {
                     self.updBuses[bus.id] = bus
                 }
-                
                 // Find new and missing keys
-                //let newKeys = Set(updBuses.keys).subtracting(self.buses.keys)
                 let updBusesKeys = updBuses.map { $0.id }
                 let newKeys = Set(updBusesKeys).subtracting(Set(self.buses.keys))
                 let missingKeys = Set(self.buses.keys).subtracting(Set(updBusesKeys))
-
                 // Update positions of existing markers
                 for (id, bus) in self.buses {
                     if let updBus = self.updBuses[id] {
-                        // Check if coordinates have changed
                         if updBus.lat != bus.lat || updBus.lon != bus.lon {
                             if let marker = self.markersDict[id]{
-//                                let markerPin = self.createMarker(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: 0.0,stopLon: 0.0,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!)
-//                                marker.icon = markerPin
                                 CATransaction.begin()
                                 CATransaction.setAnimationDuration(2.0)
                                 marker.position = CLLocationCoordinate2D(latitude: Double(updBus.lat) ?? 0.0, longitude: Double(updBus.lon) ?? 0.0)
-                                
                                 CATransaction.commit()
                             }
-//
-//                            if let markerValue = updBus.do {
-//                                if let key = self.stops.keys.first(where: { (key) -> Bool in
-//                                    return key == markerValue
-//                                }) {
-//                                    if let value = self.stops[key] {
-//
-//                                        // Update marker position
-//                                        if let marker = self.markersDict[id] {
-//                                            //WIP
-////                                            if let markerPin = self.createMarkers(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!){
-////                                                marker.icon = markerPin
-////
-////                                            }
-//
-//                                        }
-//                                    }
-//                                }
-//                            }
-  
                         }
                     }
                 }
@@ -347,35 +354,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
                         marker.map = self.mapView
                         self.markers.append(marker)
                         self.markersDict[bus.id] = marker
-//                        if let markerValue = bus.do {
-//                            if let key = self.stops.keys.first(where: { (key) -> Bool in
-//                                return key == markerValue
-//                            }) {
-//                                if let value = self.stops[key] {
-//                                    //print(value.dlugoscgeo)
-//                                    //print(value.szerokoscgeo)// prints "value1"
-//                                    let marker = GMSMarker()
-//                                    //WIP
-////                                    if let markerPin = self.createMarkers(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!){
-////                                        marker.icon = markerPin
-////
-////                                    }
-//                                    let markerPin = self.createMarker(text: bus.linia, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: bus.punktualnosc2, stopLat: value.szerokoscgeo,stopLon: value.dlugoscgeo,markerLat: Double(bus.lat)!,markerLon: Double(bus.lon)!)
-//
-//                                    marker.title = bus.id
-//                                    marker.icon = markerPin
-//                                    //marker.rotation = 90
-//                                    marker.position = CLLocationCoordinate2D(latitude: Double(bus.lat) ?? 0.0, longitude: Double(bus.lon) ?? 0.0)
-//                                    let usrData: [String:String] = ["id": bus.id,"linia": bus.linia, "brygada": bus.brygada,"z":bus.z,"do":bus.do!,"trasa":bus.trasa,"opoznienie":bus.punktualnosc2,"opoznienieInfo":bus.punktualnosc1,"kierunek":bus.kierunek]
-//                                    marker.userData = usrData
-//                                    marker.map = self.mapView
-//                                    self.markers.append(marker)
-//                                    self.markersDict[bus.id] = marker
-//
-//                                }
-//                            }
-//                        }
-                        
 
                     }
                 }
@@ -422,14 +400,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
 
-    
-
-
 
     private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: updateInterval, target: self, selector: #selector(updateBuses), userInfo: nil, repeats: true)
     }
-    
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
       super.traitCollectionDidChange(previousTraitCollection)
@@ -779,29 +753,51 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
 extension MapVC : GMSMapViewDelegate{
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("didTap Marker \(marker.title ?? "nothing")")
         
         let markerData = marker.userData as? [String:String]
-        print(markerData?["do"] as! String)
+
+        //zmiana dla zaznaczonego
+//        mapView.selectedMarker = marker
+        let selectedMarkerPin = createMarker(text: (markerData?["linia"])!, inImage: UIImage.init(named: "marker")!, color: .systemOrange, opoznienie: (markerData?["opoznienie"])!, stopLat: 0.0, stopLon: 0.0, markerLat: 0.0, markerLon: 0.0)
+        marker.icon = selectedMarkerPin
         
-        if let markerValue = markerData?["do"] {
-            if let key = stops.keys.first(where: { (key) -> Bool in
-                return key == markerValue
-            }) {
-                if let value = stops[key] {
-                    print(value) // prints "value1"
-                }
-            }
+        
+        //zmiana dla wczesniej zaznaczonego
+        for bus in (0..<self.selectedMarkers.count){
+            let selectedMarkerData = self.selectedMarkers[bus].userData as? [String:String]
+            
+            self.selectedMarkers[bus].icon = createMarker(text: (selectedMarkerData?["linia"])!, inImage: UIImage.init(named: "marker")!, color: .systemBlue, opoznienie: (selectedMarkerData?["opoznienie"])!, stopLat: 0.0, stopLon: 0.0, markerLat: 0.0, markerLon: 0.0)
         }
+        
+        
+        
+// WIP
+//        if let markerValue = markerData?["do"] {
+//            if let key = stops.keys.first(where: { (key) -> Bool in
+//                return key == markerValue
+//            }) {
+//                if let value = stops[key] {
+//                    print(value) // prints "value1"
+//                }
+//            }
+//        }
         mapInfoWindow.isHidden = false
-        //newView.configure(lineLab: marker.title!,zLab: markerData?["z"],doLab: markerData?["do"],kierunekLab: markerData?["kierunek"])
         mapInfoWindow.configure(lineLab: markerData?["linia"],kierunekLab: markerData?["kierunek"],opoznienieLab: markerData?["opoznienieInfo"],doLab: markerData?["do"])
         
+        self.selectedMarkers.removeAll()
+        self.selectedMarkers.append(marker)
+
         return true
     }
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         mapInfoWindow.isHidden=true
         
+        for bus in (0..<self.selectedMarkers.count){
+            let selectedMarkerData = self.selectedMarkers[bus].userData as? [String:String]
+            self.selectedMarkers[bus].icon = self.createMarker(text: selectedMarkerData?["linia"] ?? "brak danych", inImage: UIImage.init(named: "marker")!,color: .systemBlue,opoznienie: selectedMarkerData?["opoznienie"] ?? "brak danych", stopLat: 0.0, stopLon: 0.0, markerLat: 0.0, markerLon: 0.0)
+        }
+        self.selectedMarkers.removeAll()
+
     }
     
     

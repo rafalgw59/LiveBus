@@ -11,7 +11,7 @@ import UIKit
 
 class CityVC: UIViewController {
     // MARK: - Properties
-    let cities = ["Szczecin", "Gdansk", "Krakow", "Lodz", "Wroclaw", "Poznan"]
+    let cities = ["Szczecin", "Warszawa", "Kraków", "Poznań"]
     let tableView = UITableView()
 
     // MARK: - View Lifecycle
@@ -49,6 +49,13 @@ extension CityVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let city = cities[indexPath.row]
         UserDefaults.standard.set(city, forKey: "selectedCity")
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        tableView.cellForRow(at: indexPath)?.tintColor = .systemBlue
         navigationController?.popViewController(animated: true)
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        let city = cities[indexPath.row]
+        UserDefaults.standard.set(city,forKey: "selectedCity")
     }
 }

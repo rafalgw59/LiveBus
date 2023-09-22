@@ -118,7 +118,6 @@ extension LinesVC: RoutesManagerDelegate {
         self.lines.append(contentsOf: routez)
         DispatchQueue.main.async {
             self.selectLinesCV?.reloadData()
-            //print(self.lines.count)
         }
     
     }
