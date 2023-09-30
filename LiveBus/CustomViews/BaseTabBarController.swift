@@ -1,10 +1,3 @@
-//
-//  BaseTabBarController.swift
-//  bussin
-//
-//  Created by Rafał Gawlik on 22/12/2022.
-//
-
 import UIKit
 
 class BaseTabBarController: UITabBarController{

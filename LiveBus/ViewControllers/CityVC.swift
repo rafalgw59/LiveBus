@@ -1,10 +1,3 @@
-//
-//  CityVC.swift
-//  bussin
-//
-//  Created by Rafał Gawlik on 19/12/2022.
-//
-
 import Foundation
 import UIKit
 

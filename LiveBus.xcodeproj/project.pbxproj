@@ -38,7 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2B7EEAE12950F1D600DE7776 /* bussin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bussin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7EEAE12950F1D600DE7776 /* LiveBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7EEAE42950F1D600DE7776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B7EEAE62950F1D600DE7776 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2B7EEAEB2950F1D600DE7776 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		2B7EEB002951150200DE7776 /* SzczecinRouteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SzczecinRouteManager.swift; sourceTree = "<group>"; };
 		2B90321C2954B1340034AC0D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		2B90321E2954BD1C0034AC0D /* dark_mode_style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dark_mode_style.json; sourceTree = "<group>"; };
-		2BD54EDF295DDF2400B68517 /* libbussinLab.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbussinLab.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BD54EDF295DDF2400B68517 /* libLiveBusLab.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLiveBusLab.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BDBD53A2954DD8000A4A5D8 /* stops.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stops.json; sourceTree = "<group>"; };
 		2BDBD53C2954E92600A4A5D8 /* MapInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
 		2BDBD53E2955CAF500A4A5D8 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		2B7EEAD82950F1D500DE7776 = {
 			isa = PBXGroup;
 			children = (
-				2B7EEAE32950F1D600DE7776 /* bussin */,
+				2B7EEAE32950F1D600DE7776 /* LiveBus */,
 				2B7EEAE22950F1D600DE7776 /* Products */,
 				4817821800411B2C21F1A671 /* Pods */,
 				E0A1ECD6470261974F7F0DF3 /* Frameworks */,
@@ -93,13 +93,13 @@
 		2B7EEAE22950F1D600DE7776 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B7EEAE12950F1D600DE7776 /* bussin.app */,
-				2BD54EDF295DDF2400B68517 /* libbussinLab.a */,
+				2B7EEAE12950F1D600DE7776 /* LiveBus.app */,
+				2BD54EDF295DDF2400B68517 /* libLiveBusLab.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2B7EEAE32950F1D600DE7776 /* bussin */ = {
+		2B7EEAE32950F1D600DE7776 /* LiveBus */ = {
 			isa = PBXGroup;
 			children = (
 				2B7EEAE42950F1D600DE7776 /* AppDelegate.swift */,
@@ -112,7 +112,7 @@
 				2B7EEAED2950F1DA00DE7776 /* Assets.xcassets */,
 				2B7EEAF22950F1DA00DE7776 /* Info.plist */,
 			);
-			path = bussin;
+			path = LiveBus;
 			sourceTree = "<group>";
 		};
 		2BFC157029647A9400F99CEF /* ViewControllers */ = {
@@ -182,9 +182,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B7EEAE02950F1D600DE7776 /* bussin */ = {
+		2B7EEAE02950F1D600DE7776 /* LiveBus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B7EEAF52950F1DA00DE7776 /* Build configuration list for PBXNativeTarget "bussin" */;
+			buildConfigurationList = 2B7EEAF52950F1DA00DE7776 /* Build configuration list for PBXNativeTarget "LiveBus" */;
 			buildPhases = (
 				17F9F0148EF3FD61CC8629D4 /* [CP] Check Pods Manifest.lock */,
 				2B7EEADD2950F1D600DE7776 /* Sources */,
@@ -197,14 +197,14 @@
 			);
 			dependencies = (
 			);
-			name = bussin;
+			name = LiveBus;
 			productName = bussin;
-			productReference = 2B7EEAE12950F1D600DE7776 /* bussin.app */;
+			productReference = 2B7EEAE12950F1D600DE7776 /* LiveBus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2BD54EDE295DDF2400B68517 /* bussinLab */ = {
+		2BD54EDE295DDF2400B68517 /* LiveBusLab */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2BD54EE5295DDF2400B68517 /* Build configuration list for PBXNativeTarget "bussinLab" */;
+			buildConfigurationList = 2BD54EE5295DDF2400B68517 /* Build configuration list for PBXNativeTarget "LiveBusLab" */;
 			buildPhases = (
 				2BD54EDB295DDF2400B68517 /* Sources */,
 				2BD54EDC295DDF2400B68517 /* Frameworks */,
@@ -214,9 +214,9 @@
 			);
 			dependencies = (
 			);
-			name = bussinLab;
+			name = LiveBusLab;
 			productName = bussinLab;
-			productReference = 2BD54EDF295DDF2400B68517 /* libbussinLab.a */;
+			productReference = 2BD54EDF295DDF2400B68517 /* libLiveBusLab.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -237,7 +237,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B7EEADC2950F1D600DE7776 /* Build configuration list for PBXProject "bussin" */;
+			buildConfigurationList = 2B7EEADC2950F1D600DE7776 /* Build configuration list for PBXProject "LiveBus" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -250,8 +250,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B7EEAE02950F1D600DE7776 /* bussin */,
-				2BD54EDE295DDF2400B68517 /* bussinLab */,
+				2B7EEAE02950F1D600DE7776 /* LiveBus */,
+				2BD54EDE295DDF2400B68517 /* LiveBusLab */,
 			);
 		};
 /* End PBXProject section */
@@ -582,7 +582,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B7EEADC2950F1D600DE7776 /* Build configuration list for PBXProject "bussin" */ = {
+		2B7EEADC2950F1D600DE7776 /* Build configuration list for PBXProject "LiveBus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B7EEAF32950F1DA00DE7776 /* Debug */,
@@ -591,7 +591,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B7EEAF52950F1DA00DE7776 /* Build configuration list for PBXNativeTarget "bussin" */ = {
+		2B7EEAF52950F1DA00DE7776 /* Build configuration list for PBXNativeTarget "LiveBus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B7EEAF62950F1DA00DE7776 /* Debug */,
@@ -600,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2BD54EE5295DDF2400B68517 /* Build configuration list for PBXNativeTarget "bussinLab" */ = {
+		2BD54EE5295DDF2400B68517 /* Build configuration list for PBXNativeTarget "LiveBusLab" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2BD54EE3295DDF2400B68517 /* Debug */,

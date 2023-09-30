@@ -1,10 +1,3 @@
-//
-//  MapVC.swift
-//  bussin
-//
-//  Created by Rafał Gawlik on 19/12/2022.
-//
-
 import Foundation
 import UIKit
 import GoogleMaps
@@ -81,13 +74,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         getStops { [self] result in
             switch result {
             case .success(let stopElements):
-                // stopElements is an array of StopElement structs
-                // do something with the stop elements
                 print("blipblop")
                 self.getStopsFinished = true
                 //self.getStopsCompletion?(stopElements)
             case .failure(let error):
-                // an error occurred
                 print(error)
             }
         }
@@ -413,7 +403,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     func updateMapStyle() {
       if self.traitCollection.userInterfaceStyle == .dark {
         do {
-          // Load the dark mode style JSON file
           if let styleURL = Bundle.main.url(forResource: "dark_mode_style", withExtension: "json") {
             mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
           } else {
@@ -423,7 +412,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
           NSLog("One or more of the map styles failed to load. \(error)")
         }
       } else {
-        // Use the default light mode style
         mapView.mapStyle = nil
       }
     }
@@ -457,10 +445,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         let image = renderer.image { context in
           let cgContext = context.cgContext
 
-          // Draw the tinted image
           inImage.withTintColor(color, renderingMode: .alwaysTemplate).draw(in: CGRect(origin: .zero, size: newSize))
 
-          // Set up the style and attributes for drawing text
           let style = NSMutableParagraphStyle()
           style.alignment = .center
           let attributes: NSDictionary = [      NSAttributedString.Key.font: font,      NSAttributedString.Key.paragraphStyle: style,      NSAttributedString.Key.foregroundColor: UIColor.black    ]
@@ -473,7 +459,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
           let roundedRect = UIBezierPath(roundedRect: fillRect, cornerRadius: 50).fill()
            
 
-          // Draw the text and opoznienie string
           let textSize = text.size(withAttributes: attributes as? [NSAttributedString.Key: Any])
           
           let textRect = CGRect(x: (rect.size.width - textSize.width) / 2 - 6, y: (rect.size.height - textSize.height) / 2 - 6, width: textSize.width, height: textSize.height)
@@ -495,7 +480,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         let image = renderer.image { context in
             let cgContext = context.cgContext
             
-            // Draw the tinted image
             inImage.withTintColor(color, renderingMode: .alwaysTemplate).draw(in: CGRect(origin: .zero, size: newSize))
             
         }
@@ -548,18 +532,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         UIGraphicsEndImageContext()
 
         let rotatedMarkerPin = markerPin?.rotate(radians: bearing)
-            //define styles, attribites for text
             let style : NSMutableParagraphStyle = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
             style.alignment = .center
             let attributes:NSDictionary = [ NSAttributedString.Key.font : font, NSAttributedString.Key.paragraphStyle : style, NSAttributedString.Key.foregroundColor : UIColor.black ]
             let opoznienieAttributes:NSDictionary = [ NSAttributedString.Key.font : font, NSAttributedString.Key.paragraphStyle : style, NSAttributedString.Key.foregroundColor : UIColor.systemGreen ]
             let textSize = text.size(withAttributes: attributes as? [NSAttributedString.Key : Any])
             let rect = CGRect(x: 0, y: 0, width: newSize.width+5, height: newSize.height)
-            
-            //filled round rectangle
-            //let fillRect = CGRect(x: (rect.size.width)/4+0.23,y: (rect.size.height)/4-8 ,width: newSize.width/2, height: newSize.height/2)
 
-            //add text and opoznienie
             let textRect = CGRect(x: (rect.size.width - textSize.width)/2-7, y: (rect.size.height - textSize.height)/2 - 6, width: textSize.width+5, height: textSize.height)
             
             let opoznienieRect = CGRect(x: (rect.size.width - textSize.width)/2 + 5, y: (rect.size.height - textSize.height)/2 - 6, width: textSize.width, height: textSize.height)
@@ -713,11 +692,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
       switch manager.authorizationStatus {
       case .notDetermined:
-        // Request authorization if necessary
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
       case .authorizedWhenInUse, .authorizedAlways:
-        // Start updating the location if the app has authorization
         locationManager.startUpdatingLocation()
       default:
         break
@@ -727,23 +704,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     func scheduleBackgroundTask() {
         // register the app for background task scheduling
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "rafalgawlik.bussin.fooBackgroundAppRefreshIdentifier", using: nil) { task in
-          // code to execute when the task runs goes here
-            // schedule the task
+
             self.scheduleTask(task: task)
           }
         }
     func scheduleTask(task: BGTask) {
-        // create a task request
         let request = BGProcessingTaskRequest(identifier: "rafalgawlik.bussin.fooBackgroundProcessingIdentifier")
-        request.requiresNetworkConnectivity = true // requires network connectivity
-        request.earliestBeginDate = Date(timeIntervalSinceNow: self.updateInterval) // schedule the task to run in the future
-
-        // schedule the task
+        request.requiresNetworkConnectivity = true
+        request.earliestBeginDate = Date(timeIntervalSinceNow: self.updateInterval)
+        
         do {
           try BGTaskScheduler.shared.submit(request)
         } catch {
-          // an error occurred while scheduling the task
-          // handle the error here
+
         }
       }
 
@@ -756,13 +729,11 @@ extension MapVC : GMSMapViewDelegate{
         
         let markerData = marker.userData as? [String:String]
 
-        //zmiana dla zaznaczonego
-//        mapView.selectedMarker = marker
+
         let selectedMarkerPin = createMarker(text: (markerData?["linia"])!, inImage: UIImage.init(named: "marker")!, color: .systemOrange, opoznienie: (markerData?["opoznienie"])!, stopLat: 0.0, stopLon: 0.0, markerLat: 0.0, markerLon: 0.0)
         marker.icon = selectedMarkerPin
         
         
-        //zmiana dla wczesniej zaznaczonego
         for bus in (0..<self.selectedMarkers.count){
             let selectedMarkerData = self.selectedMarkers[bus].userData as? [String:String]
             
@@ -805,18 +776,15 @@ extension MapVC : GMSMapViewDelegate{
 extension UIImage {
     func rotate(radians: Double) -> UIImage? {
         var newSize = CGRect(origin: CGPoint.zero, size: self.size).applying(CGAffineTransform(rotationAngle: CGFloat(radians))).size
-        // Trim off the extremely small float value to prevent core graphics from rounding it up
+
         newSize.width = floor(newSize.width)
         newSize.height = floor(newSize.height)
 
         UIGraphicsBeginImageContextWithOptions(newSize, false, self.scale)
         let context = UIGraphicsGetCurrentContext()!
 
-        // Move origin to middle
         context.translateBy(x: newSize.width/2, y: newSize.height/2)
-        // Rotate around middle
         context.rotate(by: CGFloat(radians))
-        // Draw the image at its center
         self.draw(in: CGRect(x: -self.size.width/2, y: -self.size.height/2, width: self.size.width, height: self.size.height))
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

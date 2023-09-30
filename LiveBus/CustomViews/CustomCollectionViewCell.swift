@@ -1,11 +1,3 @@
-//
-//  CustomCollectionViewCell.swift
-//  bussin
-//
-//  Created by Rafał Gawlik on 19/12/2022.
-//
-
-
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
