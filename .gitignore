@@ -90,3 +90,7 @@ fastlane/test_output
 iOSInjectionProject/
 
 bussin/AppDelegate.swift
+Podfile
+Pods/
+Podfile.lock
+bussin.xcworkspace
