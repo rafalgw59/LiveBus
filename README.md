@@ -32,7 +32,7 @@ Application uses Timer to update location of vehicles every second\*
 ## More information about a vehicle
 
 <figure align="center">
-  <img src="showcase/selected.PNG" height="400" alt="selecting a vehicle"/> <br>
+  <img src="showcase/selected.PNG" height="400" alt="selecting a vehicle"/>
   <figcaption><cite>after selecting a vehicle</cite></figcaption>
 </figure>
 
