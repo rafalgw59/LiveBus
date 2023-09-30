@@ -1,6 +1,6 @@
 # LiveBus
 
-### Simple application to show current location of public transport vehicles <br> <br>
+Simple application to show current location of public transport vehicles 
 
 <ul>
 <li>Created as a diploma thesis</li>
@@ -9,7 +9,7 @@
 
 ## How it looks like?
 
-#### Application uses Timer to update location of vehicles every second\*
+Application uses Timer to update location of vehicles every second\*
 
 <p>*<cite>in the end it all depends on data provider</cite></p>
 
@@ -17,13 +17,13 @@
 <tr>
 <td>
  <figure align="center">
-  <img src="showcase/before.PNG" height="400" alt="before"/>
+  <img src="showcase/before.PNG" height="400" alt="before"/><br>
   <figcaption><cite>before updating location</cite></figcaption>
 </figure>
  </td>
 <td> 
 <figure align="center">
-  <img src="showcase/after.PNG" height="400" alt="after"/>
+  <img src="showcase/after.PNG" height="400" alt="after"/><br>
   <figcaption><cite>after updating location</cite></figcaption>
 </figure>
  </td>
@@ -32,7 +32,7 @@
 ## More information about a vehicle
 
 <figure align="center">
-  <img src="showcase/selected.PNG" height="400" alt="selecting a vehicle"/>
+  <img src="showcase/selected.PNG" height="400" alt="selecting a vehicle"/> <br>
   <figcaption><cite>after selecting a vehicle</cite></figcaption>
 </figure>
 
