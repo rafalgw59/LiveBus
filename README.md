@@ -1,6 +1,6 @@
 # LiveBus
 
-Simple application to show current location of public transport vehicles 
+Application for tracking location of public transport vehicles 
 
 <ul>
 <li>Created as a diploma thesis</li>
